@@ -3,6 +3,7 @@ package interfaces;
 public class ICICIBank implements BankingService{
     @Override
     public void withdraw() {
+        System.out.println(BankingService.x);
         System.out.println("ICICI bank api called for withdraw");
     }
 

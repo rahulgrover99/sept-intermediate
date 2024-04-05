@@ -4,7 +4,9 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Phonepe phonepe = new Phonepe(new YesBank());
+
+        BankingService bs = new YesBank();
+        Phonepe phonepe = new Phonepe(bs);
 
 
         phonepe.transferMoney();
