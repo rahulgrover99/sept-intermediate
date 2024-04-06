@@ -1,10 +1,12 @@
 package abstractclass;
 
 public abstract class Animal {
-    private String name;
+    String name;
+    static int counter = 0;
 
     Animal(String name) {
         this.name = name;
+        counter++;
     }
 
 
