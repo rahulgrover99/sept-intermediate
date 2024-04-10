@@ -2,19 +2,14 @@ package threads;
 
 public class NumberPrinter implements Runnable {
 
-//    private int i;
-    private static int x = 0;
+    private int i;
 
-//    public NumberPrinter(int i) {
-//        this.i = i;
-//    }
-
-    NumberPrinter() {
-
+    public NumberPrinter(int i) {
+        this.i = i;
     }
 
     @Override
     public void run() {
-        System.out.println("Printing " + x++ + " from thread: " + Thread.currentThread().getName());
+        System.out.println("Printing " + i + " from thread: " + Thread.currentThread().getName());
     }
 }
