@@ -1,11 +1,15 @@
 package addersubtractor;
 
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
 public class Main {
 
     public static void main(String[] args) throws InterruptedException {
         Counter counter = new Counter();
-        Adder adder = new Adder(counter);
-        Subtractor subtractor = new Subtractor(counter);
+        Lock lock = new ReentrantLock();
+        Adder adder = new Adder(counter, lock);
+        Subtractor subtractor = new Subtractor(counter, lock);
 
         Thread t1 = new Thread(adder);
         t1.start();
