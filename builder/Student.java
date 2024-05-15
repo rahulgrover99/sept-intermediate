@@ -7,6 +7,10 @@ public class Student {
     private int age;
     private double psp;
 
+    public static StudentBuilder getBuilder() {
+        return new StudentBuilder();
+    }
+
 
     public Student(StudentBuilder sb) {
 

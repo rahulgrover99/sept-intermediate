@@ -8,20 +8,24 @@ public class StudentBuilder {
 
 
     /// Default Constructor
-    public void setName(String name) {
+    public StudentBuilder setName(String name) {
         this.name = name;
+        return this;
     }
 
-    public void setUniversity(String university) {
+    public StudentBuilder setUniversity(String university) {
         this.university = university;
+        return this;
     }
 
-    public void setAge(int age) {
+    public StudentBuilder setAge(int age) {
         this.age = age;
+        return this;
     }
 
-    public void setPsp(double psp) {
+    public StudentBuilder setPsp(double psp) {
         this.psp = psp;
+        return this;
     }
 
     public String getName() {
@@ -38,5 +42,9 @@ public class StudentBuilder {
 
     public double getPsp() {
         return psp;
+    }
+
+    public Student build() {
+        return new Student(this);
     }
 }
