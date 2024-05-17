@@ -15,7 +15,7 @@ public class AdvancedStudent extends Student{
 
 
     @Override
-    protected AdvancedStudent clone() {
+    public AdvancedStudent clone() {
         return new AdvancedStudent(this);
 
     }

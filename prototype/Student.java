@@ -22,7 +22,7 @@ public class Student implements Cloneable{
     }
 
     @Override
-    protected Student clone() {
+    public Student clone() {
         return new Student(this);
     }
 
