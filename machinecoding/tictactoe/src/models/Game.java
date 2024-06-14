@@ -33,7 +33,7 @@ public class Game {
         this.winningStrategies = builder.winningStrategies;
         this.moves = new ArrayList<>();
         this.nextPlayerIndex = 0;
-        this.gameState = GameState.START;
+        this.gameState = GameState.IN_PROGRESS;
     }
 
     private static void validatePlayers(List<Player> players) {

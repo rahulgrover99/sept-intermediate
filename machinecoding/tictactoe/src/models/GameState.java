@@ -2,7 +2,7 @@ package machinecoding.tictactoe.src.models;
 
 public enum GameState {
     START,
-    END,
+    DRAW, WIN,
     IN_PROGRESS,
     PAUSED
 }

@@ -7,4 +7,11 @@ public class BotPlayer extends Player{
         super(name, symbol, id, playerType);
         this.level = level;
     }
+
+    @Override
+    public Move makeMove() {
+        // return a move based on bot strategy.
+        return new Move();
+
+    }
 }

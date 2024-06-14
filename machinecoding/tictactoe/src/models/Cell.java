@@ -1,8 +1,10 @@
 package machinecoding.tictactoe.src.models;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
+@AllArgsConstructor
 public class Cell {
     private int row;
     private int col;
