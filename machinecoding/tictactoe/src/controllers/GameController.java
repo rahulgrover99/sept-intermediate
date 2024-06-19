@@ -5,6 +5,7 @@ import machinecoding.tictactoe.src.strategies.WinningStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class GameController {
@@ -92,6 +93,7 @@ public class GameController {
 
         // 2. Placing the move on the board.
         boardController.applyMove(proposedMove, game.getBoard());
+        game.getMoves().add(proposedMove);
 
         // Check winning strategies and alter the state if changed.
         if (checkWin(game.getWinningStrategies(), game.getBoard(), proposedMove)) {
@@ -125,5 +127,29 @@ public class GameController {
             }
         }
         return false;
+    }
+
+    public void checkUndo(Game game) {
+        System.out.println("Would you like to undo the last move?");
+        Scanner sc = new Scanner(System.in);
+        String inp = sc.next();
+
+        if (inp.equals("Y")) {
+            Move move = game.getMoves().remove(game.getMoves().size() - 1);
+            int n = game.getPlayers().size();
+            game.setNextPlayerIndex(((game.getNextPlayerIndex() - 1) + n)% n);
+            int row = move.getCell().getRow();
+            int col = move.getCell().getCol();
+            Cell cell = game.getBoard().getCells().get(row).get(col);
+            cell.setCellState(CellState.FREE);
+            cell.setPlayer(null);
+
+
+            Map<Player, Integer> mp = game.getBoard().getRowsMapping().get(row);
+            mp.put(move.getCell().getPlayer(), mp.get(move.getCell().getPlayer()) - 1);
+
+            Map<Player, Integer> mp2 = game.getBoard().getColsMapping().get(col);
+            mp2.put(move.getCell().getPlayer(), mp2.get(move.getCell().getPlayer()) - 1);
+        }
     }
 }

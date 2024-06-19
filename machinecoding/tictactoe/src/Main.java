@@ -21,6 +21,7 @@ public class Main {
             // Make a move.
             gameController.printBoard(game);
             gameController.makeMove(game);
+            gameController.checkUndo(game);
         }
 
         if (gameController.checkState(game).equals(GameState.DRAW)) {
