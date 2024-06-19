@@ -1,9 +1,6 @@
 package machinecoding.tictactoe.src.controllers;
 
-import machinecoding.tictactoe.src.models.Board;
-import machinecoding.tictactoe.src.models.Cell;
-import machinecoding.tictactoe.src.models.CellState;
-import machinecoding.tictactoe.src.models.Move;
+import machinecoding.tictactoe.src.models.*;
 
 public class BoardController {
 
@@ -22,10 +19,17 @@ public class BoardController {
             throw new IllegalArgumentException("Cell already occupied.");
         }
 
+        Player player = proposedMove.getCell().getPlayer();
         // Change the board state.
         Cell cell = board.getCells().get(row).get(col);
         cell.setCellState(CellState.OCCUPIED);
-        cell.setPlayer(proposedMove.getCell().getPlayer());
+        cell.setPlayer(player);
+
+        int countRows = board.getRowsMapping().get(row).getOrDefault(player, 0) + 1;
+        board.getRowsMapping().get(row).put(player, countRows);
+
+        int countCols = board.getColsMapping().get(col).getOrDefault(player, 0) + 1;
+        board.getColsMapping().get(col).put(player, countCols);
 
     }
 

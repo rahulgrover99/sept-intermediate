@@ -1,9 +1,7 @@
 package machinecoding.tictactoe.src.controllers;
 
-import builder.StudentBuilder;
 import machinecoding.tictactoe.src.models.*;
 import machinecoding.tictactoe.src.strategies.WinningStrategy;
-import polymorphism.P;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +34,27 @@ public class GameController {
             System.out.println("Is the player a bot? (Y/N)");
             Character choice = sc.next().charAt(0);
             PlayerType playerType = choice == 'Y' ? PlayerType.BOT : PlayerType.HUMAN;
-            playerList.add(new Player(name, symbol, i, playerType));
+            if (playerType.equals(PlayerType.BOT)) {
+                System.out.println("Please enter the level of the bot: ");
+                int level = sc.nextInt();
+                Level botLevel;
+                switch (level) {
+                    case 1: {
+                        botLevel = Level.EASY;
+                        break;
+                    }
+                    case 2: {
+                        botLevel = Level.MEDIUM;
+                        break;
+                    }
+                    default: botLevel = Level.HARD;
+
+                }
+                playerList.add(new BotPlayer(name, symbol, i, playerType,botLevel ));
+            } else {
+                playerList.add(new Player(name, symbol, i, playerType));
+            }
+
         }
 
         return Game.getBuilder().setDimension(N).setPlayers(playerList).build();
@@ -70,7 +88,7 @@ public class GameController {
         // Logic for the player to make a move.
 
         // 1. Get the move for the player (bot/human)
-        Move proposedMove = currentPlayer.makeMove();
+        Move proposedMove = currentPlayer.makeMove(game.getBoard());
 
         // 2. Placing the move on the board.
         boardController.applyMove(proposedMove, game.getBoard());

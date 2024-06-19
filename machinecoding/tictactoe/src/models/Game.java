@@ -1,6 +1,8 @@
 package machinecoding.tictactoe.src.models;
 
 import lombok.Data;
+import machinecoding.tictactoe.src.strategies.ColumnWinningStrategy;
+import machinecoding.tictactoe.src.strategies.RowWinningOptimisedStrategy;
 import machinecoding.tictactoe.src.strategies.RowWinningStrategy;
 import machinecoding.tictactoe.src.strategies.WinningStrategy;
 import polymorphism.B;
@@ -60,7 +62,7 @@ public class Game {
 
         private Builder() {
             this.players = new ArrayList<>();
-            this.winningStrategies = List.of(new RowWinningStrategy());
+            this.winningStrategies = List.of(new RowWinningOptimisedStrategy(), new ColumnWinningStrategy());
             this.dimension = 3;
         }
 

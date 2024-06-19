@@ -14,7 +14,7 @@ public class Player {
     private int id;
     private PlayerType playerType;
 
-    public Move makeMove() {
+    public Move makeMove(Board board) {
         // User input
         Scanner sc = new Scanner(System.in);
         System.out.println("Row? ");
